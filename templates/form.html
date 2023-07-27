@@ -25,7 +25,41 @@
 <body>
     <h1>Generate link</h1>
         <form method="POST" action="/makeLink">
+            <div id="textboxContainer">
+                <label for="textbox1">Textbox 1:</label>
+                <input type="text" id="textbox1" name="textbox1"><br>
+                <label for="textbox2">Textbox 2:</label>
+                <input type="text" id="textbox2" name="textbox2"><br>
+              </div>
             <input type="submit" value="Submit">         
         </form>
+        <button onclick="generateTextbox()">Add Another Textbox</button>
 </body>
+
+<script>
+    let textboxCounter = 2;
+
+    function generateTextbox() {
+        // Max size
+        if(textboxCounter>=20){
+            return 0;
+        }
+
+        textboxCounter++;
+
+        const newLabel = document.createElement('label');
+        newLabel.innerHTML = `Textbox ${textboxCounter}: `;
+        newLabel.setAttribute('for', `textbox${textboxCounter}`);
+
+        const newTextbox = document.createElement('input');
+        newTextbox.setAttribute('type', 'text');
+        newTextbox.setAttribute('id', `textbox${textboxCounter}`);
+        newTextbox.setAttribute('name', `textbox${textboxCounter}`);
+        
+        const container = document.getElementById('textboxContainer');
+        container.appendChild(newLabel);
+        container.appendChild(newTextbox);
+        container.appendChild(document.createElement('br'));
+    }
+  </script>
 </html>

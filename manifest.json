@@ -1,23 +1,16 @@
 {
-    "version": "1.0",
+    "manifest_version": 3,
     "name": "bundlelink",
-    "description": "Share links to multiple sites",
-    "manifest_version": 1,
-    "background": {
-        "page": "background.html"
-    },
+    "version": "0.1",
+    "description": "Compile multiple websites into one shareable link",
     "icons": {
 	"192": "icons/icon192.png"
     },
     "options_page": "options.html",
-    "page_action": {
-        "default_icon": {
-            "19": "icons/icon19.png",
-            "38": "icons/icon38.png"
-        },
-        "default_title": "single click: copy selected tab\ndouble click: copy tabs in window\ntriple click: copy tabs in session"
-    },  
-    "content_security_policy": "script-src 'self'; object-src 'self'",
+    "action": {
+        "default_title": "Click to view copied links",
+        "default_popup": "./templates/form.html"
+    },
     "permissions": [
         "clipboardWrite",
         "tabs",

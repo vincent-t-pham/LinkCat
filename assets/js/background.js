@@ -1,11 +1,5 @@
 // background.js
 
-function injectedFunction() {
-    document.body.style.backgroundColor = 'blue';
-    console.log("test");
-}
-
-
 chrome.runtime.onMessage.addListener (
     function (request, sender, sendResponse) {
         if (request.action == "initiateGenerateTextbox") {
@@ -19,6 +13,5 @@ chrome.runtime.onMessage.addListener (
         }
     } 
 )
-
 
 console.log("background loaded")

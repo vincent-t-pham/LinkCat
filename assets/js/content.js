@@ -1,6 +1,6 @@
 // content.js
 
-document.body.style.backgroundColor = 'blue';
+// document.body.style.backgroundColor = 'blue';
 console.log("test");
 
 
@@ -8,7 +8,11 @@ console.log("test");
 // function injectedFunction(){
 // let textboxCounter = 2;
 
-// // const popup = document.querySelector("textboxContainer")
+const popup = document.querySelector("#textboxContainer")
+
+var textboxHtml = "<label for='textbox2'>Textbox 2:</label><input type='text' id='textbox2' name='textbox2'><br>"
+popup.outerHTML = textboxHtml
+
 // // const popupContent = document.getElementById("textboxContainer")
 
 // // Max size

@@ -11,7 +11,6 @@ console.log("test");
 const popup = document.querySelector("#textboxContainer")
 
 var textboxHtml = "<label for='textbox2'>Textbox 2:</label><input type='text' id='textbox2' name='textbox2'><br>"
-popup.outerHTML = textboxHtml
 
 // // const popupContent = document.getElementById("textboxContainer")
 

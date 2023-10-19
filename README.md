@@ -1,7 +1,7 @@
 # multilink
 
 ## Running Local Server Endpoint
-This is the chrome extension's skeleton with some basic styling and communication between the forms data and a local server
+This is the chrome extension's skeleton with some basic styling and communication between Widget forms data and a local server
 
 ### Open local server
 1. Run 'python3 ./server.py'

@@ -22,7 +22,7 @@ def makeLink():
 
         newLink = 'http://localhost:5000/' + linkID 
         
-        return render_template('linkGenerated.html', new_link=newLink)
+        return render_template('/templates/linkGenerated.html', new_link=newLink)
     else:
         # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         #         This is the first page rendered             #

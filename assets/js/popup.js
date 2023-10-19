@@ -2,6 +2,9 @@
 document.addEventListener("DOMContentLoaded", function(){
     const myButton = document.querySelector("#test-button");
     const generateLink = document.querySelector("#submit");
+    
+    const resultElement = document.createElement('p');
+    resultElement.id = 'result';
 
     myButton.addEventListener("click", function(){
         var div = document.getElementsByTagName("body")[0].style.backgroundColor = "aqua";
@@ -39,6 +42,10 @@ document.addEventListener("DOMContentLoaded", function(){
     
             if (response.ok) {
                 const responseData = await response.json();
+
+                resultElement.textContent = JSON.stringify(responseData, null, 2);
+                document.body.appendChild(resultElement);
+
                 console.log('Response Data: ', responseData);
             } else {
                 console.error('ErroR:', response.status);

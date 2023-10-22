@@ -1,0 +1,115 @@
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+h1 {
+    margin: 5px 0;
+    margin-left: 5px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+button {
+    width: 30px; /* Set the width to your desired size */
+    height: 30px; /* Set the height to your desired size */
+    background-color: slategray;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    text-align: center; /* Center the text horizontally */
+    line-height: 30px; /* Center the text vertically */
+}
+
+button:hover {
+    background-color: lightgray
+}
+
+h1, button {
+    margin-right: 10px;
+}
+
+p {
+    margin-top: 20px;
+}
+
+.link {
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+}
+html{
+    min-height: 19em;
+    min-width:  13.5em;
+}
+
+#textboxContainer {
+    text-align: center; /* Horizontally center the content */
+    margin: 0 auto; /* Center the container within its parent horizontally */
+    margin-top: 10px;
+    margin-bottom: 68px; /* Add a bottom margin to create space */
+}
+
+.buttons{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #2596be;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s; 
+}
+
+input[type="submit"]:hover {
+    background-color: #87CEEB; 
+}
+
+input[type="text"] {
+    margin-bottom: 9px;
+}
+
+/* Styles for the loading screen overlay */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(240, 240, 240, 0.956); /* Whiteish-grey opaque background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    border: 4px solid #f3f3f3; /* Grey tracer */
+    border-top: 4px solid #3498db; /* Blue spinner */
+    border-radius: 50%;
+    width: 30px; /* Smaller size */
+    height: 30px; /* Smaller size */
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

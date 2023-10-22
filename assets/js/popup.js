@@ -1,5 +1,15 @@
 // popup.js
+
 document.addEventListener("DOMContentLoaded", function(){
+
+    // Hide the loading screen
+    setTimeout(function() {
+        // Code to be executed after the delay
+        const loadingScreen = document.querySelector(".loading-screen");
+        loadingScreen.style.display = "none";
+    }, 350);
+
+
     const myButton = document.querySelector("#test-button");
     const generateLink = document.querySelector("#submit");
     const textboxContainer = document.getElementById("textboxContainer");
@@ -12,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         const newLabel = document.createElement('label');
         newLabel.setAttribute('for', 'textbox' + (textboxContainer.childElementCount / 3 + 1));
-        newLabel.textContent = 'Textbox ' + (textboxContainer.childElementCount / 3 + 1) + ':';
+        newLabel.textContent = 'Link ' + (textboxContainer.childElementCount / 3 + 1) + ':';
         // Create a new input element
         const newInput = document.createElement('input');
         newInput.setAttribute('type', 'text');

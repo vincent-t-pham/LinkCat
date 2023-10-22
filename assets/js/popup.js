@@ -11,17 +11,20 @@ document.addEventListener("DOMContentLoaded", function(){
         // var div = document.getElementsByTagName("body")[0].style.backgroundColor = "aqua";
 
         const newLabel = document.createElement('label');
-        newLabel.setAttribute('for', 'textbox' + (textboxContainer.childElementCount / 2 + 1));
-        newLabel.textContent = 'Textbox ' + (textboxContainer.childElementCount / 2 + 1) + ':';
+        newLabel.setAttribute('for', 'textbox' + (textboxContainer.childElementCount / 3 + 1));
+        newLabel.textContent = 'Textbox ' + (textboxContainer.childElementCount / 3 + 1) + ':';
         // Create a new input element
         const newInput = document.createElement('input');
         newInput.setAttribute('type', 'text');
-        newInput.setAttribute('id', 'textbox' + (textboxContainer.childElementCount / 2 + 1));
-        newInput.setAttribute('name', 'textbox' + (textboxContainer.childElementCount / 2 + 1));
+        newInput.setAttribute('id', 'textbox' + (textboxContainer.childElementCount / 3 + 1 ));
+        newInput.setAttribute('name', 'textbox' + (textboxContainer.childElementCount / 3 + 1 ));
+     
+        const lineBreak = document.createElement('br');
 
         // Append the new label and input to the container
         textboxContainer.appendChild(newLabel);
         textboxContainer.appendChild(newInput);
+        textboxContainer.appendChild(lineBreak);
 
 
         const newTextbox = document.createElement('');
@@ -72,65 +75,31 @@ document.addEventListener("DOMContentLoaded", function(){
             console.error('ErrOR:', error);
         }
 
-        
-
     });
 
 
-    // const copyLink = document.getElementById('copyLink');
+    const textbox1 = document.getElementById("textbox1")
+    const textbox2 = document.getElementById("textbox2")
 
-    // copyLink.addEventListener('click', function (e) {
-    //     e.preventDefault(); // Prevent the link from navigating
+    // Load saved values from storage when the popup is opened
+    chrome.storage.sync.get(['textbox1', 'textbox2'], (items) => {
+        if (items.textbox1) {
+            textbox1.value = items.textbox1;
+        }
+        if (items.textbox2) {
+            textbox2.value = items.textbox2;
+        }
+    });
 
-    //     const urlToCopy = copyLink.href; // Get the URL from the link's href attribute
+    // Save textbox values to storage when they change
+    textbox1.addEventListener('input', () => {
+        chrome.storage.sync.set({ 'textbox1': textbox1.value });
+    });
 
-    //     // Create a temporary input element to hold the URL
-    //     const tempInput = document.createElement('input');
-    //     tempInput.value = urlToCopy;
+    textbox2.addEventListener('input', () => {
+        chrome.storage.sync.set({ 'textbox2': textbox2.value });
+    });
 
-    //     // Append the input to the document
-    //     document.body.appendChild(tempInput);
-
-    //     // Select the text in the input and copy it to the clipboard
-    //     tempInput.select();
-    //     document.execCommand('copy');
-
-    //     // Remove the input from the document
-    //     document.body.removeChild(tempInput);
-
-    //     alert('URL copied to clipboard: ' + urlToCopy);
-    // });
-
-
-    // generateLink.addEventListener("click", function(){
-    //     console.log("Trying to POST pressed");
-
-    //     const dataToSend = {
-    //         key1: 'value1',
-    //         key2: 'value2',
-    //       };
-
-    //     const url = 'http://127.0.0.1:5000/endpoint'
-
-    //     // const request = new Request(url, {
-    //     //     method: 'POST',
-    //     //     body:JSON,stringify()
-    //     // })
-
-    //     fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type:': 'application/json',
-    //         },
-    //         body: dataToSend,
-    //     })
-    //     .then((responseData) => {
-    //         console.log('Response Data: ', responseData)
-    //     })
-    //     .catch((error) => {
-    //         console.error('ErroR', error)
-    //     })
-    // })
 
     
 

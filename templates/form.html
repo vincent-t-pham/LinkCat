@@ -27,17 +27,14 @@
             color: blue;
         }
         html{
-            min-height: 23em;
+            min-height: 19em;
             min-width:  13.5em;
         }
 
-        #textboxContainer{
-            text-align: left;
-            flex: 1; /* Allow the container to take up available vertical space */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Vertically center the content */
-            align-items: center; /* Horizontally center the content */
+        #textboxContainer {
+            text-align: center; /* Horizontally center the content */
+            margin: 0 auto; /* Center the container within its parent horizontally */
+            margin-bottom: 85px; /* Add a bottom margin to create space */
         }
 
         .buttons{
@@ -51,7 +48,7 @@
             background-color: #2596be;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 20px;
             cursor: pointer;
             border-radius: 10px;
             transition: background-color 0.3s; 
@@ -61,7 +58,16 @@
             background-color: #87CEEB; 
         }
 
-
+        button {
+            background-color: lightgrey;
+            color: white;
+            border: none;
+            padding: 7px 20px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s; 
+        }
         
     </style>
 </head>
@@ -76,13 +82,12 @@
                 <label for="textbox2">Textbox 2:</label>
                 <input type="text" id="textbox2" name="textbox2"><br>
             </div>     
-            <input id="submit" type="submit" value="Submit">    
         </form>
         
         <div class="buttons">
             <hr style="width: 100%; border-color: lightgrey; border-width: 1px"> 
-            <button id="select-generate-textbox">Add Another Textbox</button>
-            <button id="test-button">Test button</button>
+            <button id="test-button">Add Another Textbox</button>
+            <input id="submit" type="submit" value="Submit">    
         </div>
 
 </body>

@@ -23,6 +23,9 @@ def endpoint():
         jsonRequest = request.get_json()
         data1 = jsonRequest.get('textbox1')
         data2 = jsonRequest.get('textbox2')
+        dataArr = []
+        for data in jsonRequest:
+            print(data)
 
         # print(f'Data submitted:   \n' +
         #       f'textbox1 - {data1}\n' +
@@ -47,7 +50,9 @@ def endpoint():
 @app.route('/<linkID>')
 def clickedLink(linkID):
     if linkID in linkStorage:
- 
+        # thread issues and race conditions - db, cache, reddist - uwsgi serverd handles one request at a time
+        # snakecase: snake_case
+
         links = linkStorage[linkID]  
 
         for link in links:

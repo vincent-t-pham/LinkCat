@@ -2,14 +2,14 @@
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    // Hide the loading screen
+    // Hide the loading screen // lambdas
     setTimeout(function() {
         // Code to be executed after the delay
         const loadingScreen = document.querySelector(".loading-screen");
         loadingScreen.style.display = "none";
     }, 350);
 
-
+    // uniform quote styling
     const myButton = document.querySelector("#test-button");
     const generateLink = document.querySelector("#submit");
     const textboxContainer = document.getElementById("textboxContainer");

@@ -36,6 +36,13 @@ document.addEventListener("DOMContentLoaded", function(){
         textboxContainer.appendChild(newInput);
         textboxContainer.appendChild(lineBreak);
 
+        // Add an event listener to the new textbox
+        newInput.addEventListener('input', () => {
+            const storageKey = `textbox${textboxContainer.childElementCount / 3}`;
+            const data = {};
+            data[storageKey] = newTextbox.value;
+            chrome.storage.sync.set(data);
+        });
 
         const newTextbox = document.createElement('');
         textboxContainer.appendChild()
@@ -45,18 +52,14 @@ document.addEventListener("DOMContentLoaded", function(){
     generateLink.addEventListener("click", async function() {
         event.preventDefault();
         console.log("Trying to POST pressed");
-    
-        // new functionnnnnn so annoying
-        const textbox1 = document.getElementById("textbox1")
-        const textboxValue1 = textbox1.value
-        const textbox2 = document.getElementById("textbox2")
-        const textboxValue2 = textbox2.value
 
-        const dataToSend = {
-            textbox1: textboxValue1,
-            textbox2: textboxValue2,
-            key2: 'value2',
-        };
+        const dataToSend = {};
+
+        for (let i = 1; i <= textboxContainer.childElementCount/3; i++) {
+            const textbox = document.getElementById(`textbox${i}`);
+            dataToSend[`textbox${i}`] = textbox.value;
+        }
+
         print(JSON.stringify(dataToSend))
 
         const url = 'http://127.0.0.1:5000/endpoint';
@@ -75,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 const responseData = await response.json();
 
                 resultElement.textContent = JSON.stringify(responseData, null, 2);
-                document.body.appendChild(resultElement);
+                document.buttons.appendChild(resultElement);
 
                 console.log('Response Data: ', responseData);
             } else {

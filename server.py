@@ -20,19 +20,18 @@ def randomLinkID():
 def endpoint():
     if request.method == 'POST':
         # data = request.form.get('textbox1')
+        linkID = randomLinkID()
         jsonRequest = request.get_json()
-        data1 = jsonRequest.get('textbox1')
-        data2 = jsonRequest.get('textbox2')
-        dataArr = []
-        for data in jsonRequest:
-            print(data)
+
+        if linkID not in linkStorage:
+            linkStorage[linkID] = []
+
+        for key, value in jsonRequest.items():
+            linkStorage[linkID].append(value)
 
         # print(f'Data submitted:   \n' +
         #       f'textbox1 - {data1}\n' +
         #       f'textbox2 - {data2} '  )  # Print to the console
-        linkID = randomLinkID()
-
-        linkStorage[linkID] = [data1, data2]
 
         newLink = 'http://127.0.0.1:5000/' + linkID 
         # returnPackage = {

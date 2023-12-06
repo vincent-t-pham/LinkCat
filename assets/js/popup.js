@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const resultElement = document.createElement('p');
     resultElement.id = 'result';
 
+    // Add additional links event listener button
     myButton.addEventListener("click", function(){
         // var div = document.getElementsByTagName("body")[0].style.backgroundColor = "aqua";
 
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log("popup.js test");
     });
 
+    // Submit links event listener
     generateLink.addEventListener("click", async function() {
         event.preventDefault();
         console.log("Trying to POST pressed");
@@ -90,12 +92,18 @@ document.addEventListener("DOMContentLoaded", function(){
 
     });
 
+    // on close add the last known text value to ???? is it always there
 
     const textbox1 = document.getElementById("textbox1")
     const textbox2 = document.getElementById("textbox2")
 
+    // will go above
+    arrayTextbox.append(document.getElementById('textbox' + arrayTextbox.len()))
+
     // Load saved values from storage when the popup is opened
-    chrome.storage.sync.get(['textbox1', 'textbox2'], (items) => {
+    chrome.storage.sync.get(arrayTextbox, (items) => {
+        // for items in arrayTextbox:
+        //  textboxcontainer[items].value = arrayTextbox[i];
         if (items.textbox1) {
             textbox1.value = items.textbox1;
         }
@@ -104,6 +112,10 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
+    // need an arrayTextbox to asd
+    // arrayTextbox.addeventListener('input', () => {
+    // chrome.storage.sync.get({'textbox' + arrayTextbox.len() : arrayTextbox[i].value });
+    //})
     // Save textbox values to storage when they change
     textbox1.addEventListener('input', () => {
         chrome.storage.sync.set({ 'textbox1': textbox1.value });

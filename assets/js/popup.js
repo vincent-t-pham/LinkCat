@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded", function(){
         textboxContainer.appendChild(newInput);
         textboxContainer.appendChild(lineBreak);
 
-        // Add an event listener to the new textbox
-        newInput.addEventListener('input', () => {
-            const storageKey = `textbox${textboxContainer.childElementCount / 3}`;
-            const data = {};
-            data[storageKey] = newTextbox.value;
-            chrome.storage.sync.set(data);
-        });
+        // // Add an event listener to the new textbox
+        // newInput.addEventListener('input', () => {
+        //     const storageKey = `textbox${textboxContainer.childElementCount / 3}`;
+        //     const data = {};
+        //     data[storageKey] = newTextbox.value;
+        //     chrome.storage.sync.set(data);
+        // });
 
         const newTextbox = document.createElement('');
         textboxContainer.appendChild()
@@ -62,6 +62,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
         print(JSON.stringify(dataToSend))
 
+    //         const dataToSend = {
+//             textbox1: textboxValue1,
+//             textbox2: textboxValue2,
+//             key2: 'value2',
+//          };
+
         const url = 'http://127.0.0.1:5000/endpoint';
     
         try {
@@ -78,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 const responseData = await response.json();
 
                 resultElement.textContent = JSON.stringify(responseData, null, 2);
-                document.buttons.appendChild(resultElement);
+                document.body.appendChild(resultElement);
 
                 console.log('Response Data: ', responseData);
             } else {
@@ -117,5 +123,4 @@ document.addEventListener("DOMContentLoaded", function(){
     
 
 })
-
 

@@ -17,8 +17,44 @@ document.addEventListener("DOMContentLoaded", function(){
     const resultElement = document.createElement('p');
     resultElement.id = 'result';
 
+
+
+    chrome.storage.sync.get(null, (items) => {
+        // Iterate through all stored items
+        Object.keys(items).forEach((key) => {
+            // Check if the key represents a textbox (e.g., 'textbox1')
+            if (key.startsWith('textbox')) {
+                // Extract the index from the key
+                const index = parseInt(key.replace('textbox', ''), 10);
+                console.log(index)
+
+                // Create the corresponding textbox
+                const newLabel = document.createElement('label');
+                newLabel.setAttribute('for', 'textbox' + index);
+                newLabel.textContent = 'Link ' + index + ':';
+
+                const newInput = document.createElement('input');
+                newInput.setAttribute('type', 'text');
+                newInput.setAttribute('id', 'textbox' + index);
+                newInput.setAttribute('name', 'textbox' + index);
+
+                const lineBreak = document.createElement('br');
+
+                textboxContainer.appendChild(newLabel);
+                textboxContainer.appendChild(newInput);
+                textboxContainer.appendChild(lineBreak);
+
+                // Set the value of the textbox based on the stored data
+                newInput.value = items[key];
+            }
+        });
+    });
+
+
     myButton.addEventListener("click", function(){
         // var div = document.getElementsByTagName("body")[0].style.backgroundColor = "aqua";
+        const textBoxCount = textboxContainer.childElementCount / 3 + 1;
+        const storageKey = `textbox${textBoxCount}`;
 
         const newLabel = document.createElement('label');
         newLabel.setAttribute('for', 'textbox' + (textboxContainer.childElementCount / 3 + 1));
@@ -36,14 +72,11 @@ document.addEventListener("DOMContentLoaded", function(){
         textboxContainer.appendChild(newInput);
         textboxContainer.appendChild(lineBreak);
 
-        // // Add an event listener to the new textbox
-        // newInput.addEventListener('input', () => {
-        //     const storageKey = `textbox${textboxContainer.childElementCount / 3}`;
-        //     const data = {};
-        //     data[storageKey] = newTextbox.value;
-        //     chrome.storage.sync.set(data);
-        // });
-
+        // Mark the textbox as added in storage
+        const data = {};
+        data[storageKey] = true;
+        chrome.storage.sync.set(data);
+        
         const newTextbox = document.createElement('');
         textboxContainer.appendChild()
         console.log("popup.js test");
@@ -99,6 +132,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const textbox1 = document.getElementById("textbox1")
     const textbox2 = document.getElementById("textbox2")
+    const textbox3 = document.getElementById("textbox3")
+
+    // const textbox1 = document.getElementById("textbox1")
+    // const textbox2 = document.getElementById("textbox2")
+    // const textbox1 = document.getElementById("textbox1")
+    // const textbox2 = document.getElementById("textbox2")
 
     // Load saved values from storage when the popup is opened
     chrome.storage.sync.get(['textbox1', 'textbox2'], (items) => {
@@ -107,6 +146,9 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         if (items.textbox2) {
             textbox2.value = items.textbox2;
+        }
+        if (items.textbox3) {
+            textbox3.value = items.textbox3;
         }
     });
 
@@ -119,8 +161,13 @@ document.addEventListener("DOMContentLoaded", function(){
         chrome.storage.sync.set({ 'textbox2': textbox2.value });
     });
 
+    textbox3.addEventListener('input', () => {
+        chrome.storage.sync.set({ 'textbox3': textbox3.value });
+    });
+
 
     
 
 })
+
 

@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // uniform quote styling
     const myButton = document.querySelector("#test-button");
+    const removeButton = document.querySelector("#remove-button");
     const generateLink = document.querySelector("#submit");
     const textboxContainer = document.getElementById("textboxContainer");
 
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function(){
         // Iterate through all stored items
         Object.keys(items).forEach((key) => {
             // Check if the key represents a textbox (e.g., 'textbox1')
+            // Sorts by the first digit instead of value i.e [1, 10, 11, 2, 3, 4]
             if (key.startsWith('textbox')) {
                 // Extract the index from the key
                 const index = parseInt(key.replace('textbox', ''), 10);
@@ -50,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
-
+    //Additional link
     myButton.addEventListener("click", function(){
         // var div = document.getElementsByTagName("body")[0].style.backgroundColor = "aqua";
         const textBoxCount = textboxContainer.childElementCount / 3 + 1;
@@ -72,22 +74,52 @@ document.addEventListener("DOMContentLoaded", function(){
         textboxContainer.appendChild(newInput);
         textboxContainer.appendChild(lineBreak);
 
-        // Mark the textbox as added in storage
-        const data = {};
-        data[storageKey] = true;
-        chrome.storage.sync.set(data);
-        
-        const newTextbox = document.createElement('');
-        textboxContainer.appendChild()
+        // // Mark the textbox as added in storage
+        // const data = {};
+        // data[storageKey] = 'sub';
+        // chrome.storage.sync.set(data);
+
+        // Add an event listener to the new textbox
+        newInput.addEventListener('input', () => {
+            // Save the value of the new textbox to storage
+            const data = {};
+            data[storageKey] = newInput.value;
+            console.log(data[storageKey])
+            chrome.storage.sync.set(data);
+        });
+            
         console.log("popup.js test");
     });
 
+    removeButton.addEventListener("click", function() {
+        chrome.storage.sync.get(null, function(items) {
+            // Get all items from storage
+          
+            // Check if there are any items
+            if (Object.keys(items).length > 0) {
+              // Get the first key in the items
+              const firstKey = Object.keys(items)[0];
+          
+              // Remove the item with the first key
+              chrome.storage.sync.remove(firstKey, function() {
+                console.log('Top item removed');
+                chrome.runtime.reload();
+              });
+            } else {
+              console.log('Storage is empty');
+            }
+          });
+    })
+
+
+    //POST to server button
     generateLink.addEventListener("click", async function() {
         event.preventDefault();
         console.log("Trying to POST pressed");
 
         const dataToSend = {};
 
+        // Could fail if index is out of order
         for (let i = 1; i <= textboxContainer.childElementCount/3; i++) {
             const textbox = document.getElementById(`textbox${i}`);
             dataToSend[`textbox${i}`] = textbox.value;

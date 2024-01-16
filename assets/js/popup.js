@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const textboxContainer = document.getElementById("textboxContainer");
     const buttonsContainer = document.getElementById("buttons");
 
-    const resultElement = document.createElement('p');
+    const resultElement = document.createElement('a');
     resultElement.id = 'result';
 
 
@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 resultElement.textContent = JSON.stringify(responseData, null, 2);
                 resultElement.textContent = resultElement.textContent.replace(/["']/g, '');
+                resultElement.href = resultElement.textContent
 
                 buttonsContainer.prepend(resultElement);
 

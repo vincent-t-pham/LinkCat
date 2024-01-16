@@ -6,7 +6,6 @@
     "icons": {
 	"192": "assets/icons/icon192.png"
     },
-    "options_page": "options.html",
     "action": {
         "default_title": "Click to view copied links",
         "default_popup": "./templates/form.html"

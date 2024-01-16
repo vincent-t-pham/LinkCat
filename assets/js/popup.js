@@ -1,5 +1,10 @@
 // popup.js
 
+// CODE STRUCTURE //
+// querySelect: Find elements (querySelect) existing in the HTML document
+// addEventListener: Function implementation of user buttons
+// 
+
 document.addEventListener("DOMContentLoaded", function(){
 
     // Hide the loading screen // lambdas
@@ -10,10 +15,11 @@ document.addEventListener("DOMContentLoaded", function(){
     }, 350);
 
     // uniform quote styling
-    const myButton = document.querySelector("#test-button");
+    const addButton = document.querySelector("#test-button");
     const removeButton = document.querySelector("#remove-button");
     const generateLink = document.querySelector("#submit");
     const textboxContainer = document.getElementById("textboxContainer");
+    const buttonsContainer = document.getElementById("buttons");
 
     const resultElement = document.createElement('p');
     resultElement.id = 'result';
@@ -53,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     //Additional link
-    myButton.addEventListener("click", function(){
+    addButton.addEventListener("click", function(){
         // var div = document.getElementsByTagName("body")[0].style.backgroundColor = "aqua";
         const textBoxCount = textboxContainer.childElementCount / 3 + 1;
         const storageKey = `textbox${textBoxCount}`;
@@ -98,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(){
             // Check if there are any items
             if (Object.keys(items).length > 0) {
               // Get the first key in the items
-              const firstKey = Object.keys(items)[0];
+              const firstKey = Object.keys(items)[Object.keys(items).length-1];
           
               // Remove the item with the first key
               chrome.storage.sync.remove(firstKey, function() {
@@ -149,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 const responseData = await response.json();
 
                 resultElement.textContent = JSON.stringify(responseData, null, 2);
-                document.body.appendChild(resultElement);
+                buttonsContainer.prepend(resultElement);
 
                 console.log('Response Data: ', responseData);
             } else {
@@ -160,45 +166,6 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
     });
-
-
-    const textbox1 = document.getElementById("textbox1")
-    const textbox2 = document.getElementById("textbox2")
-    const textbox3 = document.getElementById("textbox3")
-
-    // const textbox1 = document.getElementById("textbox1")
-    // const textbox2 = document.getElementById("textbox2")
-    // const textbox1 = document.getElementById("textbox1")
-    // const textbox2 = document.getElementById("textbox2")
-
-    // Load saved values from storage when the popup is opened
-    chrome.storage.sync.get(['textbox1', 'textbox2'], (items) => {
-        if (items.textbox1) {
-            textbox1.value = items.textbox1;
-        }
-        if (items.textbox2) {
-            textbox2.value = items.textbox2;
-        }
-        if (items.textbox3) {
-            textbox3.value = items.textbox3;
-        }
-    });
-
-    // Save textbox values to storage when they change
-    textbox1.addEventListener('input', () => {
-        chrome.storage.sync.set({ 'textbox1': textbox1.value });
-    });
-
-    textbox2.addEventListener('input', () => {
-        chrome.storage.sync.set({ 'textbox2': textbox2.value });
-    });
-
-    textbox3.addEventListener('input', () => {
-        chrome.storage.sync.set({ 'textbox3': textbox3.value });
-    });
-
-
-    
 
 })
 

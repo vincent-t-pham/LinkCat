@@ -157,6 +157,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 const responseData = await response.json();
 
                 resultElement.textContent = JSON.stringify(responseData, null, 2);
+                resultElement.textContent = resultElement.textContent.replace(/["']/g, '');
+
                 buttonsContainer.prepend(resultElement);
 
                 console.log('Response Data: ', responseData);

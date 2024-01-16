@@ -1,0 +1,5 @@
+Do we need an Options Page for manifest 
+
+Bugs:
+without www. and with multiple browsers available, links 2+ do not consistently open
+code does not allow changes to existing links once initialized, and must be removed

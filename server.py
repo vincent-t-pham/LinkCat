@@ -28,10 +28,8 @@ def endpoint():
 
         for key, value in jsonRequest.items():
             linkStorage[linkID].append(value)
+            # print(value)
 
-        # print(f'Data submitted:   \n' +
-        #       f'textbox1 - {data1}\n' +
-        #       f'textbox2 - {data2} '  )  # Print to the console
 
         newLink = 'http://127.0.0.1:5000/' + linkID 
         # returnPackage = {
@@ -59,6 +57,7 @@ def clickedLink(linkID):
                                                         # If new is 1, a new browser window is opened if possible. If new is 2, 
                                                         # a new browser page (“tab”) is opened if possible
             # if(new==1): new=0
+            # print(link)
 
         return render_template('forcePageClose.html')   # Closes the page that was opened from the link
     else:

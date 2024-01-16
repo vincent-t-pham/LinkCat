@@ -1,9 +1,11 @@
 // popup.js
 
-// CODE STRUCTURE //
-// querySelect: Find elements (querySelect) existing in the HTML document
-// addEventListener: Function implementation of user buttons
-// 
+//  CODE STRUCTURE  //
+//  querySelect: Find elements (querySelect) existing in the HTML document
+//  addEventListener: Function implementation of user buttons
+//      addButton
+//      removeButton
+//      generateLinkButton
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // uniform quote styling
     const addButton = document.querySelector("#test-button");
     const removeButton = document.querySelector("#remove-button");
-    const generateLink = document.querySelector("#submit");
+    const generateLinkButton = document.querySelector("#submit");
     const textboxContainer = document.getElementById("textboxContainer");
     const buttonsContainer = document.getElementById("buttons");
 
@@ -119,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     //POST to server button
-    generateLink.addEventListener("click", async function() {
+    generateLinkButton.addEventListener("click", async function() {
         event.preventDefault();
         console.log("Trying to POST pressed");
 
